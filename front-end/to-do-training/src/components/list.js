@@ -10,10 +10,10 @@ export default class ListComponent extends Component {
   }
 
   componentDidMount() {
-    fetch('/todolist')
+    fetch(process.env.REACT_APP_BACK_SERVER + '/todolist')
       .then(res => res.json())
       .then(activities => this.setState({activities: activities.result}));
-  }
+    }
 
   render () {
     return (

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { Link } from 'react-router-dom'
 
 
 class Edit extends Component {
@@ -16,7 +15,7 @@ class Edit extends Component {
   }
 
   componentDidMount() {
-    fetch('/todolist/'+this.state.id)
+    fetch(process.env.REACT_APP_BACK_SERVER + '/todolist/' + this.state.id)
       .then(res => res.json())
       .then(activity => {
         this.setState({activity: activity})
@@ -43,15 +42,18 @@ class Edit extends Component {
       description: this.state.description
     })
 
-    fetch('/todolist/'+this.state.id, {
+  fetch(process.env.REACT_APP_BACK_SERVER +'/todolist/'+this.state.id, {
       method: 'PUT',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({title: this.state.title, description: this.state.description})
+    }).then(function(){
+      window.location.href = '/'
     })
   }
+
 
   render() {
     return (
@@ -63,7 +65,7 @@ class Edit extends Component {
         <h3> Edit your activity: </h3>
         Title: <input value={this.state.title} onChange={this.inputTitleOnChange} /> 
         Description: <input value={this.state.description} onChange={this.inputDescriptionOnChange} /> 
-        <Link to='/'><button onClick={this.handleClick}> Update </button></Link>
+        <button onClick={this.handleClick}> Update </button>
       </div>
     )
   }

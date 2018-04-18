@@ -27,7 +27,7 @@ export default class InputComponent extends Component {
       description: this.state.description
     })
     
-    fetch('/todolist', {
+    fetch(process.env.REACT_APP_BACK_SERVER +'/todolist', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

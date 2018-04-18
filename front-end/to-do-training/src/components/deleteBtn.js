@@ -3,7 +3,7 @@ import React, {Component} from 'react'
 export default class DeleteButton extends Component {
 
   handleClick = () => {
-    fetch('/todolist/delete/'+this.props.id, {method: 'DELETE'}).then(window.location.reload())
+    fetch(process.env.REACT_APP_BACK_SERVER +'/todolist/delete/'+this.props.id, {method: 'DELETE'}).then(window.location.reload())
   }
 
   render() {

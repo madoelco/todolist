@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 require('dotenv').config()
+const cors =  require('cors')
 const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 mongoose.connect(process.env.DATABASEURL)
@@ -11,6 +12,7 @@ db.once('open', function() {
  console.log('connected successfuly')
 })
 
+app.use(cors())
 app.use(bodyParser.json())
 
 const router = require('./router')
